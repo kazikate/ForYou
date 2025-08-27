@@ -250,7 +250,75 @@ footer{ margin:28px 0 8px; text-align:center; color:var(--muted); font-size:13px
 
 @keyframes blink{ 0%,50%,100%{opacity:1;} 25%,75%{opacity:0;} }
 
-</style>
+  #musicIcon {
+
+  display: none;
+
+  margin-left: 7px;
+
+  width: 20px;  /* PNG boyutu */
+
+  height: 20px;
+
+  animation: bounce 1s infinite alternate;
+
+}
+
+  .badge .emoji {
+
+  width: 18px;       /* badge içinde uygun boyut */
+
+  height: 18px;
+
+  vertical-align: middle; /* yazının ortasında durması için */
+
+  margin-right: 2px;       /* yazı ile biraz boşluk bırakmak için */
+
+}
+
+  
+
+  .btn .emoji {
+
+  width: 18px;          /* istediğin boyut */
+
+  height: 18px;
+
+  vertical-align: middle; /* yazının ortasında durması için */
+
+  margin-left: 4px;       /* yazı ile aralık bırakmak için */
+
+}
+
+  
+
+  h3 .emoji {
+
+  width: 30px;          /* istediğin boyut */
+
+  height: 30px;
+
+  vertical-align: -3px; /* başlıkla aynı hizada durması için */
+
+  margin-right: 1px;      /* başlık ile aralığı ayarlamak için */
+
+}
+
+  
+
+  .subtitle .emoji {
+
+  width: 18px;          /* istediğin boyut */
+
+  height: 18px;
+
+  vertical-align: middle; /* yazıyla aynı hizada durması için */
+
+  margin-left: 0px;       /* yazı ile aralık bırakmak için */
+
+}
+
+  </style>
 
 </head>
 
@@ -262,17 +330,35 @@ footer{ margin:28px 0 8px; text-align:center; color:var(--muted); font-size:13px
 
   <header class="card">        
 
-    <span class="badge">📅 5 Eylül 2025</span>        
+    <span class="badge">
+
+  <img class="emoji" src="https://iili.io/K2c9oAX.png" alt="Takvim" />
+
+  5 Eylül 2025
+
+</span>       
 
     <h1 class="title">İyi ki doğdun, Elif!</h1>        
 
-    <p class="subtitle">Bu sayfayı senin için hazırladım. Küçük ama kalpten bir armağan✨</p>        
+    <p class="subtitle">
+
+  Bu sayfayı senin için hazırladım. Küçük ama kalpten bir armağan
+
+  <img class="emoji" src="https://iili.io/K2cmxIa.png" alt="Parıltı" />
+
+</p>        
 
     <div class="actions">        
 
-      <button class="btn primary" id="revealMsg">Mesajı Göster 💌</button>        
+      <button class="btn primary" id="revealMsg">
 
-      <span id="musicIcon">🎵</span>        
+  Mesajı Göster
+
+  <img class="emoji" src="https://iili.io/K2c52xs.png" alt="Mektup" />
+
+</button>       
+
+      <img id="musicIcon" src="https://iili.io/K2la7Fj.png" alt="Müzik" />       
 
     </div>        
 
@@ -282,7 +368,13 @@ footer{ margin:28px 0 8px; text-align:center; color:var(--muted); font-size:13px
 
   <section class="card">        
 
-    <h3>💬 <span class="fancy">Mesaj</span></h3>        
+    <h3>
+
+  <img class="emoji" src="https://iili.io/K2ccrw7.png" alt="Mesaj" />
+
+  <span class="fancy">Mesaj</span>
+
+</h3>       
 
     <div class="type" id="typewriter" aria-live="polite"></div>        
 
@@ -290,7 +382,13 @@ footer{ margin:28px 0 8px; text-align:center; color:var(--muted); font-size:13px
 
   <section class="card">        
 
-    <h3>📸 <span class="fancy">Minik bir galeri</span></h3>        
+    <h3>
+
+  <img class="emoji" src="https://iili.io/K2c8JFR.png" alt="Fotoğraf" />
+
+  <span class="fancy">Minik bir galeri</span>
+
+</h3>      
 
     <div class="grid" id="gallery">
 
@@ -336,7 +434,13 @@ footer{ margin:28px 0 8px; text-align:center; color:var(--muted); font-size:13px
 
   <section class="card">        
 
-    <h3>🕰️ <span class="fancy">Küçük Zaman Çizelgesi</span></h3>        
+    <h3>
+
+  <img class="emoji" src="https://iili.io/K2c64b2.png" alt="Fotoğraf" />
+
+  <span class="fancy">Küçük zaman çizelgesi</span>
+
+</h3>        
 
     <div class="timeline" id="timeline">        
 
@@ -352,7 +456,13 @@ footer{ margin:28px 0 8px; text-align:center; color:var(--muted); font-size:13px
 
   <section class="card">        
 
-    <h3>🌌 <span class="fancy">Küçük Notlar</span></h3>        
+   <h3>
+
+  <img class="emoji" src="https://iili.io/K2csrOv.png" alt="Fotoğraf" />
+
+  <span class="fancy">Küçük notlar</span>
+
+</h3>        
 
     <div class="timeline" id="timelineNotes">  
 
@@ -404,7 +514,7 @@ const el = $('#typewriter');
 
 const heart = document.createElement('img');
 
-heart.src = "https://iili.io/KdsFguj.md.png";
+heart.src = "https://iili.io/K2luW6Q.png";
 
 heart.style.width = '28px';
 
@@ -508,7 +618,7 @@ let confs = [];
 
 const img = new Image();
 
-img.src = "https://iili.io/KdsFguj.md.png";
+img.src = "https://iili.io/K2luW6Q.png";
 
 function spawn(n = 100) {
 
@@ -553,6 +663,8 @@ function draw() {
     ctx.translate(p.x, p.y);
 
     ctx.rotate(p.rot);
+
+    ctx.globalAlpha = 1;
 
     ctx.drawImage(img, -p.size/2, -p.size/2, p.size, p.size);
 
