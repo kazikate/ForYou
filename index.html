@@ -1,3 +1,4 @@
+
 <!doctype html>
 
 <html lang="tr">
@@ -19,26 +20,29 @@
   --accent: #ff7ac3;
   --glow: 0 0 40px rgba(155,92,255,.35), 0 0 80px rgba(53,209,255,.25);
   --radius: 22px;
-}  *{box-sizing:border-box;}
-html, body{
-margin:0;
-padding:0;
-overflow-x:hidden;
-font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-color: var(--text);
-background: radial-gradient(1200px 800px at 100% -10%, rgba(155,92,255,.08), transparent),
-radial-gradient(800px 600px at -10% 110%, rgba(53,209,255,.08), transparent),
-var(--bg);
-line-height:1.6;
+}  
+*{box-sizing:border-box;}
+html, body {
+  margin:0;
+  padding:0;
+  overflow-x:hidden;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+  color: var(--text);
+  background: 
+    linear-gradient(to bottom, rgba(155,92,255,0.08) 0%, rgba(53,209,255,0.08) 30%, rgba(11,11,16,1) 100%),
+    radial-gradient(1200px 800px at 100% -10%, rgba(155,92,255,.08), transparent),
+    radial-gradient(800px 600px at -10% 110%, rgba(53,209,255,.08), transparent),
+    var(--bg);
+  line-height:1.6;
 }
 
-.wrap{
-max-width:960px;
-margin:0 auto;
-padding:24px;
-min-height:100%;
-background: linear-gradient(to bottom, rgba(155,92,255,0.08) 0%, rgba(53,209,255,0.08) 30%, rgba(11,11,16,1) 100%);
-position: relative;
+.wrap {
+  max-width:960px;
+  margin:0 auto;
+  padding:24px;
+  min-height:100%;
+  position: relative;
+  /* background kaldırıldı */
 }
 
 /* Kart ve glow efektleri */
@@ -50,6 +54,8 @@ background: linear-gradient(160deg, rgba(255,255,255,.04), rgba(255,255,255,.02)
 backdrop-filter: blur(6px);
 box-shadow: var(--glow);
 overflow: visible;
+will-change: transform, box-shadow, filter;
+transform: translateZ(0); /* GPU ivmelendirme için eklendi */
 }
 header.card::before,
 header.card::after {
@@ -62,26 +68,27 @@ filter: blur(25px);
 top:50%;
 left:50%;
 transform-origin: center;
+will-change: transform, filter;
 }
 header.card::before { background: rgba(155,92,255,0.3); animation: orbit-mor 1s linear forwards;}
 header.card::after { background: rgba(53,209,255,0.3); animation: orbit-mavi 1s linear forwards;}
-@keyframes orbit-mor {from { transform: translate(-50%, -50%) rotate(65deg) translate(-200px, 120px);} to {transform: translate(-50%, -50%) rotate(0deg) translate(-200px, 120px);}}
-@keyframes orbit-mavi {from { transform: translate(-50%, -50%) rotate(245deg) translate(-200px, 120px);} to {transform: translate(-50%, -50%) rotate(180deg) translate(-200px, 120px);}}
+@keyframes orbit-mor {from { transform: translate(-50%, -50%) rotate(65deg) translate(-200px, 120px) translateZ(0);} to {transform: translate(-50%, -50%) rotate(0deg) translate(-200px, 120px) translateZ(0);}}
+@keyframes orbit-mavi {from { transform: translate(-50%, -50%) rotate(245deg) translate(-200px, 120px) translateZ(0);} to {transform: translate(-50%, -50%) rotate(180deg) translate(-200px, 120px) translateZ(0);}}
 header.card > * { position: relative; z-index:1; }
 
 .badge{ display:inline-flex; gap:8px; align-items:center; color:var(--muted); font-size:16px; padding:10px 14px; border-radius:999px; background: rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.08); }
 .title{ font-family:'Pacifico', cursive; font-size:clamp(36px,8vw,64px); line-height:1.5; margin:15px 0 25px; font-weight:500; letter-spacing:.2px; display:inline-block; padding-bottom: 0.30em; padding: 0.25em 0.08em; background: linear-gradient(90deg, var(--primary), var(--primary-2)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
 .subtitle{ margin:0; color:var(--muted); font-size:clamp(14px,2.6vw,18px); }
 .actions{ display:flex; gap:12px; flex-wrap:wrap; margin-top:18px; align-items:center; }
-.btn{ cursor:pointer; padding:14px 20px; border-radius:14px; border:1px solid rgba(255,255,255,.1); background: rgba(255,255,255,.04); color:var(--text); font-weight:600; transition: .2s transform,.2s background,.2s border; font-size:16px; }
-.btn:hover{ transform:translateY(-1px); background: rgba(255,255,255,.07); }
+.btn{ cursor:pointer; padding:14px 20px; border-radius:14px; border:1px solid rgba(255,255,255,.1); background: rgba(255,255,255,.04); color:var(--text); font-weight:600; transition: .2s transform,.2s background,.2s border; font-size:16px; will-change: transform;}
+.btn:hover{ transform:translateY(-1px) translateZ(0); background: rgba(255,255,255,.07); }
 .btn.primary{ background: linear-gradient(135deg, var(--primary), var(--primary-2)); border:none; box-shadow:0 10px 30px rgba(155,92,255,.3); }
 .btn:focus { outline: none; -webkit-tap-highlight-color: transparent; }
-@keyframes press { 0% { transform: scale(1); } 50% { transform: scale(0.95); } 100% { transform: scale(1); } }
+@keyframes press { 0% { transform: scale(1) translateZ(0); } 50% { transform: scale(0.95) translateZ(0); } 100% { transform: scale(1) translateZ(0); } }
 .btn.press { animation: press 0.2s ease; }
 section{margin-top:20px;}
-.card{background:linear-gradient(160deg, rgba(255,255,255,.04), rgba(255,255,255,.02)); border:1px solid rgba(255,255,255,.08); border-radius:var(--radius); padding:20px; opacity:0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease;}
-.card.reveal{opacity:1; transform: translateY(0);}
+.card{background:linear-gradient(160deg, rgba(255,255,255,.04), rgba(255,255,255,.02)); border:1px solid rgba(255,255,255,.08); border-radius:var(--radius); padding:20px; opacity:0; transform: translateY(20px) translateZ(0); transition: opacity 0.6s ease, transform 0.6s ease; will-change: transform, opacity; }
+.card.reveal{opacity:1; transform: translateY(0) translateZ(0);}
 .fancy{ font-family:'Pacifico', cursive; background: linear-gradient(90deg, var(--accent), var(--primary)); -webkit-background-clip:text; color:transparent; font-size:28px; font-weight:400; margin-left:4px; }
 .type{min-height:48px; font-size:clamp(16px,2.6vw,20px);}
 #typewriter{ display: block; text-align: left; }
@@ -100,16 +107,17 @@ border-radius:14px;
 padding:12px;
 box-shadow:0 14px 30px rgba(0,0,0,.35);
 opacity:0;
-transform: translateY(20px) rotate(var(--rot,-2deg));
+transform: translateY(20px) rotate(var(--rot,-2deg)) translateZ(0); /* GPU ivmelendirme için eklendi */
 transition: opacity 0.6s ease, transform 0.6s ease;
 width:100%;
 max-width:220px;
+will-change: transform, opacity;
 }
 .polaroid.reveal{
 opacity:1;
-transform: translateY(0) rotate(var(--rot,-2deg));
+transform: translateY(0) rotate(var(--rot,-2deg)) translateZ(0);
 }
-.polaroid:hover{ transform:rotate(0) translateY(-2px) }
+.polaroid:hover{ transform:rotate(0) translateY(-2px) translateZ(0); }
 .polaroid img{ width:100%; aspect-ratio:3/4; object-fit:cover; border-radius:10px; }
 .polaroid .cap{ margin-top:6px; text-align:center; font-weight:600; font-size:13px; color:var(--muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
 
@@ -120,14 +128,14 @@ transform: translateY(0) rotate(var(--rot,-2deg));
 .polaroid:nth-child(4).reveal { transition-delay: 0.2s; }
 
 .timeline{position:relative; padding-left:22px}
-.timeline:before{ content:""; position:absolute; left:10px; top:4px; bottom:4px; width:2px; background:linear-gradient(var(--primary), transparent); }
-.t-item{ position:relative; margin:16px 0; padding:12px 12px 12px 16px; background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08); border-radius:14px; opacity:0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
-.t-item.reveal{ opacity:1; transform: translateY(0); }
-.t-item:before{ content:""; position:absolute; left:-6px; top:14px; width:12px; height:12px; border-radius:50%; background:var(--primary); }
+.timeline:before{ content:""; position:absolute; left:10px; top:4px; bottom:4px; width:2px; background:linear-gradient(var(--primary), transparent); transform: translateZ(0);} /* GPU ivmelendirme için eklendi */
+.t-item{ position:relative; margin:16px 0; padding:12px 12px 12px 16px; background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08); border-radius:14px; opacity:0; transform: translateY(20px) translateZ(0); transition: opacity 0.6s ease, transform 0.6s ease; will-change: transform, opacity;}
+.t-item.reveal{ opacity:1; transform: translateY(0) translateZ(0); }
+.t-item:before{ content:""; position:absolute; left:-6px; top:14px; width:12px; height:12px; border-radius:50%; background:var(--primary); transform: translateZ(0);} /* GPU ivmelendirme için eklendi */
 footer{ margin:28px 0 8px; text-align:center; color:var(--muted); font-size:13px; }
 #confetti{ position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; }
 #musicIcon{ display:none; margin-left:12px; font-size:18px; animation:bounce 1s infinite alternate; }
-@keyframes bounce{ 0%{transform:translateY(0);} 100%{transform:translateY(-4px);} }
+@keyframes bounce{ 0%{transform:translateY(0) translateZ(0);} 100%{transform:translateY(-4px) translateZ(0);} }
 @keyframes blink{ 0%,50%,100%{opacity:1;} 25%,75%{opacity:0;} }
 
 #musicIcon {
@@ -168,6 +176,8 @@ margin-left: 0px;
 
 @media (min-width: 768px) {
   .wrap {
+    /* 1200 piksel ve üzeri ekranlar için genişliği artır */
+    max-width: 1200px;
     padding: 24px 20px;
   }
 
@@ -258,8 +268,9 @@ margin-left: 0px;
     border: 1px solid rgba(255,255,255,.08);
     border-radius: 14px;
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(20px) translateZ(0);
     transition: opacity 0.6s ease, transform 0.6s ease;
+    will-change: transform, opacity;
   }
 }
 
@@ -288,12 +299,12 @@ margin-left: 0px;
 .modal-content {
   position: relative;
   transition: transform 0.4s ease, opacity 0.4s ease;
-  transform: scale(0.6);
+  transform: scale(0.6) translateZ(0);
   opacity: 0;
 }
 
 .modal.active .modal-content {
-  transform: scale(1);
+  transform: scale(1) translateZ(0);
   opacity: 1;
 }
 
@@ -321,8 +332,15 @@ margin-left: 0px;
     max-width: 90vw; /* Küçük ekranlarda %90'a kadar büyüsün */
   }
 }
+  
+@media (min-width: 768px) {
+  #confetti {
+    display: none;
+  }
+}
 
 </style>
+
 
 </head>
 <body>
@@ -520,7 +538,7 @@ $('#revealMsg').addEventListener('click', () => {
   btn.classList.remove('press');
   void btn.offsetWidth;
   btn.classList.add('press');
-  fadeInMusic(0.5); // Sesi yavaşça %50'ye kadar artır
+  fadeInMusic(1); // Sesi yavaşça %50'ye kadar artır
 });
 
 // PNG konfeti
