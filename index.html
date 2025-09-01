@@ -1,4 +1,3 @@
-
 <!doctype html>
 
 <html lang="tr">
@@ -20,7 +19,7 @@
   --accent: #ff7ac3;
   --glow: 0 0 40px rgba(155,92,255,.35), 0 0 80px rgba(53,209,255,.25);
   --radius: 22px;
-}  
+}
 *{box-sizing:border-box;}
 html, body {
   margin:0;
@@ -28,7 +27,7 @@ html, body {
   overflow-x:hidden;
   font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
   color: var(--text);
-  background: 
+  background:
     linear-gradient(to bottom, rgba(155,92,255,0.08) 0%, rgba(53,209,255,0.08) 30%, rgba(11,11,16,1) 100%),
     radial-gradient(1200px 800px at 100% -10%, rgba(155,92,255,.08), transparent),
     radial-gradient(800px 600px at -10% 110%, rgba(53,209,255,.08), transparent),
@@ -37,26 +36,47 @@ html, body {
 }
 
 .wrap {
-  max-width:960px;
-  margin:0 auto;
-  padding:24px;
-  min-height:100%;
   position: relative;
-  /* background kaldırıldı */
+  z-index: 0;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 24px;
+  min-height: 100vh;
 }
 
-/* Kart ve glow efektleri */
-header.card {
-position: relative;
-border-radius: var(--radius);
-padding: 20px 24px 20px;
-background: linear-gradient(160deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
-backdrop-filter: blur(6px);
-box-shadow: var(--glow);
-overflow: visible;
-will-change: transform, box-shadow, filter;
-transform: translateZ(0); /* GPU ivmelendirme için eklendi */
+/* Tüm kartlar için ortak stil */
+.card {
+  position: relative; /* Bağımsız hareket etmesi için */
+  border-radius: var(--radius);
+  padding: 20px 24px 20px;
+  background: linear-gradient(160deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+  backdrop-filter: blur(6px);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.35); /* Tüm kartlara gölge ekleniyor */
+  overflow: visible;
+  will-change: transform, box-shadow, filter, opacity;
+  transform: translateZ(0);
+  
+  /* Animasyon için eklenen stiller */
+  opacity: 0;
+  transform: translateY(20px) translateZ(0);
+  transition: opacity 0.6s ease, transform 0.6s ease;
 }
+
+/* Kartlar sayfada belirdiğinde uygulanacak stil */
+.card.reveal{
+  opacity:1;
+  transform: translateY(0) translateZ(0);
+}
+
+/* Header kartı için özel glow efekti */
+header.card {
+  box-shadow: var(--glow),
+              0 12px 24px rgba(0, 0, 0, 0.5),
+              0 20px 60px rgba(0, 0, 0, 0.35);
+}
+
+
+
 header.card::before,
 header.card::after {
 content:"";
@@ -86,9 +106,9 @@ header.card > * { position: relative; z-index:1; }
 .btn:focus { outline: none; -webkit-tap-highlight-color: transparent; }
 @keyframes press { 0% { transform: scale(1) translateZ(0); } 50% { transform: scale(0.95) translateZ(0); } 100% { transform: scale(1) translateZ(0); } }
 .btn.press { animation: press 0.2s ease; }
-section{margin-top:20px;}
-.card{background:linear-gradient(160deg, rgba(255,255,255,.04), rgba(255,255,255,.02)); border:1px solid rgba(255,255,255,.08); border-radius:var(--radius); padding:20px; opacity:0; transform: translateY(20px) translateZ(0); transition: opacity 0.6s ease, transform 0.6s ease; will-change: transform, opacity; }
-.card.reveal{opacity:1; transform: translateY(0) translateZ(0);}
+
+section.card{ margin-top:20px; } /* Tüm section kartlarına üst boşluk veriyoruz */
+
 .fancy{ font-family:'Pacifico', cursive; background: linear-gradient(90deg, var(--accent), var(--primary)); -webkit-background-clip:text; color:transparent; font-size:28px; font-weight:400; margin-left:4px; }
 .type{min-height:48px; font-size:clamp(16px,2.6vw,20px);}
 #typewriter{ display: block; text-align: left; }
@@ -99,23 +119,26 @@ grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
 gap: 20px;
 justify-items: center;
 }
-.polaroid{
-position:relative;
-background:rgba(255,255,255,.05);
-color:var(--text);
-border-radius:14px;
-padding:12px;
-box-shadow:0 14px 30px rgba(0,0,0,.35);
-opacity:0;
-transform: translateY(20px) rotate(var(--rot,-2deg)) translateZ(0); /* GPU ivmelendirme için eklendi */
-transition: opacity 0.6s ease, transform 0.6s ease;
-width:100%;
-max-width:220px;
-will-change: transform, opacity;
+.polaroid {
+  position: relative;
+  z-index: 2;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text);
+  border-radius: 14px;
+  padding: 12px;
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.35);
+  opacity: 0;
+  transform: translateY(20px) rotate(var(--rot, -2deg));
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  width: 100%;
+  max-width: 220px;
+  will-change: transform, opacity;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
 }
-.polaroid.reveal{
-opacity:1;
-transform: translateY(0) rotate(var(--rot,-2deg)) translateZ(0);
+.polaroid.reveal {
+  opacity: 1;
+  transform: translateY(0) rotate(var(--rot, -2deg));
 }
 .polaroid:hover{ transform:rotate(0) translateY(-2px) translateZ(0); }
 .polaroid img{ width:100%; aspect-ratio:3/4; object-fit:cover; border-radius:10px; }
@@ -128,13 +151,39 @@ transform: translateY(0) rotate(var(--rot,-2deg)) translateZ(0);
 .polaroid:nth-child(4).reveal { transition-delay: 0.2s; }
 
 .timeline{position:relative; padding-left:22px}
-.timeline:before{ content:""; position:absolute; left:10px; top:4px; bottom:4px; width:2px; background:linear-gradient(var(--primary), transparent); transform: translateZ(0);} /* GPU ivmelendirme için eklendi */
-.t-item{ position:relative; margin:16px 0; padding:12px 12px 12px 16px; background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08); border-radius:14px; opacity:0; transform: translateY(20px) translateZ(0); transition: opacity 0.6s ease, transform 0.6s ease; will-change: transform, opacity;}
-.t-item.reveal{ opacity:1; transform: translateY(0) translateZ(0); }
-.t-item:before{ content:""; position:absolute; left:-6px; top:14px; width:12px; height:12px; border-radius:50%; background:var(--primary); transform: translateZ(0);} /* GPU ivmelendirme için eklendi */
+.timeline:before{ content:""; position:absolute; left:10px; top:4px; bottom:4px; width:2px; background:linear-gradient(var(--primary), transparent); transform: translateZ(0);}
+.t-item {
+  position: relative;
+  z-index: 2;
+  margin: 16px 0;
+  padding: 12px 12px 12px 16px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.35);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  will-change: transform, opacity;
+}
+  .t-item.reveal {
+  opacity: 1;
+  transform: translateY(0);
+}
+  .t-item:before{ content:""; position:absolute; left:-6px; top:18.5px; width:12px; height:12px; border-radius:50%; background:var(--primary); transform: translateZ(0);}
 footer{ margin:28px 0 8px; text-align:center; color:var(--muted); font-size:13px; }
-#confetti{ position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; }
-#musicIcon{ display:none; margin-left:12px; font-size:18px; animation:bounce 1s infinite alternate; }
+#confetti {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+  #musicIcon{ display:none; margin-left:12px; font-size:18px; animation:bounce 1s infinite alternate; }
 @keyframes bounce{ 0%{transform:translateY(0) translateZ(0);} 100%{transform:translateY(-4px) translateZ(0);} }
 @keyframes blink{ 0%,50%,100%{opacity:1;} 25%,75%{opacity:0;} }
 
@@ -176,11 +225,9 @@ margin-left: 0px;
 
 @media (min-width: 768px) {
   .wrap {
-    /* 1200 piksel ve üzeri ekranlar için genişliği artır */
     max-width: 1200px;
     padding: 24px 20px;
   }
-
   .desktop-layout {
     display: grid;
     gap: 20px;
@@ -190,16 +237,11 @@ margin-left: 0px;
     grid-template-areas:
       "header gallery"
       "message gallery"
-      "timeline notes";
+      "timeline notes"
+      "friend-note-card friend-note-card";
     align-items: start;
   }
-
-  /* Header */
-  #header-card {
-    grid-area: header;
-  }
-
-  /* Gallery */
+  #header-card { grid-area: header; }
   #gallery-card {
     grid-area: gallery;
     display: flex;
@@ -207,10 +249,7 @@ margin-left: 0px;
     height: 100%;
     margin-top: 0;
   }
-
-  .gallery-card h3 {
-    margin-bottom: 15px;
-  }
+  .gallery-card h3 { margin-bottom: 15px; }
   .gallery-card .grid {
     flex-grow: 1;
     display: grid;
@@ -218,48 +257,29 @@ margin-left: 0px;
     gap: 20px;
     align-content: start;
   }
-
-  /* Message kartı → header ile timeline arasında ortalı */
   #message-card {
     grid-area: message;
     display: flex;
     flex-direction: column;
     justify-content: center;
     height: auto;
-    margin-top: 25px; /* pozisyonu aşağı kaydırır */
+    margin-top: 25px;
   }
-
-  /* Timeline ve Notes kartları */
-  #timeline-card, #notes-card {
-    display: flex;
-    flex-direction: column;
-  }
-
-  #timeline-card {
-    justify-content: space-between;
-    margin-top: -56.7px;
-  }
-  #notes-card {
-    justify-content: space-between;
-  }
-
-  /* İçerik alanları */
+  #timeline-card, #notes-card { display: flex; flex-direction: column; }
+  #timeline-card { justify-content: space-between; margin-top: -56.7px; }
+  #notes-card { justify-content: space-between; }
   .timeline-card .timeline,
   .notes-card .timeline {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
   }
-
-  /* Timeline ve Notes yan yana eşit yüksek */
   .timeline-notes-desktop {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 20px;
     align-items: stretch;
   }
-
-  /* İçindeki minik kartlar arası boşluk optimize edildi */
   .t-item {
     position: relative;
     margin: 8px 0;
@@ -290,58 +310,51 @@ margin-left: 0px;
   transition: opacity 0.4s ease;
   z-index: 1000;
 }
-
 .modal.active {
   opacity: 1;
   pointer-events: auto;
 }
-
 .modal-content {
   position: relative;
   transition: transform 0.4s ease, opacity 0.4s ease;
   transform: scale(0.6) translateZ(0);
   opacity: 0;
 }
-
 .modal.active .modal-content {
   transform: scale(1) translateZ(0);
   opacity: 1;
 }
-
 .modal-content .polaroid {
   cursor: default;
   transform: none !important;
   box-shadow: 0 20px 60px rgba(0,0,0,0.5);
   transition: none;
 }
-  
-  /* FOTOĞRAF BÜYÜTME EFEKTİ İÇİN CSS KURALLARINA EKLEME */
 .modal-content .polaroid {
   cursor: default;
   transform: none !important;
   box-shadow: 0 20px 60px rgba(0,0,0,0.5);
   transition: none;
-  /* Yeni ekleme: Büyütülen polaroid için daha geniş bir maksimum genişlik */
-  max-width: 80vw; /* Ekran genişliğinin %80'i */
-  width: auto; /* Genişliği içeriğe göre ayarla */
+  max-width: 80vw;
+  width: auto;
+  background: rgba(255,255,255,0.05) !important;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+z-index: 1000;
 }
-
-/* Küçük ekranlarda daha fazla yer kaplaması için */
 @media (max-width: 768px) {
   .modal-content .polaroid {
-    max-width: 90vw; /* Küçük ekranlarda %90'a kadar büyüsün */
+    max-width: 90vw;
   }
 }
-  
 @media (min-width: 768px) {
   #confetti {
     display: none;
   }
 }
-
-</style>
-
-
+.polaroid > * { position: relative; z-index:1; }
+.t-item > * { position: relative; z-index:1; }
+  </style>
 </head>
 <body>
   <div class="wrap">
@@ -423,6 +436,16 @@ margin-left: 0px;
           <div class="t-item">İyi ki varsın...</div>
         </div>
       </section>
+
+      <section class="card notes-card" id="friend-note-card">
+        <h3>
+          <img class="emoji" src="https://iili.io/KK4ECiJ.png" alt="Fotoğraf" />
+          <span class="fancy">Yakın arkadaşın Nisa'dan</span>
+        </h3>
+        <div class="timeline" id="timelineFriendNote">
+          <div class="t-item">Her zaman kalbin gibi güzel ve temiz bir kız olarak yaşa Eliff :)</div>
+        </div>
+      </section>
     </div>
 
     <footer>
@@ -436,6 +459,8 @@ margin-left: 0px;
     </div>
   </div>
 
+</body>
+  </html>
 <script>
 const $ = sel => document.querySelector(sel);
 
@@ -520,7 +545,7 @@ function fadeOutMusic(duration = 1000) {
       player.volume -= decrement;
     } else {
       player.pause();
-      player.currentTime = 0; // Şarkıyı başa al
+      player.currentTime = 0;
       clearInterval(fade);
     }
   }, interval);
@@ -538,7 +563,7 @@ $('#revealMsg').addEventListener('click', () => {
   btn.classList.remove('press');
   void btn.offsetWidth;
   btn.classList.add('press');
-  fadeInMusic(1); // Sesi yavaşça %50'ye kadar artır
+  fadeInMusic(1);
 });
 
 // PNG konfeti
@@ -603,6 +628,10 @@ const observer = new IntersectionObserver((entries) => {
   threshold: 0.1
 });
 document.querySelectorAll('.card, .polaroid, .t-item').forEach(el => observer.observe(el));
+document.addEventListener('DOMContentLoaded', () => {
+    const headerCard = document.getElementById('header-card');
+    headerCard.classList.add('reveal');
+});
 
 // FOTOĞRAF BÜYÜTME EFEKTİ
 const galleryGrid = $('#gallery');
@@ -619,32 +648,21 @@ galleryGrid.addEventListener('click', (e) => {
     modalContent.innerHTML = '';
     modalContent.appendChild(clonedPolaroid);
     modal.classList.add('active');
-
-    // Geçmişe yeni bir durum ekle
     history.pushState({
       modal: 'open'
     }, 'Büyütülmüş Fotoğraf');
   }
 });
-
-// Modalın arkaplanına tıklanınca sadece modalı kapat
 modal.addEventListener('click', (e) => {
   if (e.target.id === 'modal' || e.target.closest('.modal-content')) {
     modal.classList.remove('active');
   }
 });
-
-
-// Geri tuşuyla modalı kapatma özelliği
 window.addEventListener('popstate', (e) => {
-  // Eğer modal açıksa, geri tuşuna basıldığında kapat
   if (modal.classList.contains('active')) {
     modal.classList.remove('active');
   }
 });
-
-
-
 </script>
 </body>
 </html>
