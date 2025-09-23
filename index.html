@@ -1,668 +1,83 @@
-<!doctype html>
-
-<html lang="tr">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>İyi ki Doğdun, Elif 🎂</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
-<style>
-:root{
-  --bg: #0b0b10;
-  --card: #12121a;
-  --text: #f0f3f8;
-  --muted: #c2c7d3;
-  --primary: #9b5cff;
-  --primary-2: #35d1ff;
-  --accent: #ff7ac3;
-  --glow: 0 0 40px rgba(155,92,255,.35), 0 0 80px rgba(53,209,255,.25);
-  --radius: 22px;
-}
-*{box-sizing:border-box;}
-html, body {
-  margin:0;
-  padding:0;
-  overflow-x:hidden;
-  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-  color: var(--text);
-  background:
-    linear-gradient(to bottom, rgba(155,92,255,0.08) 0%, rgba(53,209,255,0.08) 30%, rgba(11,11,16,1) 100%),
-    radial-gradient(1200px 800px at 100% -10%, rgba(155,92,255,.08), transparent),
-    radial-gradient(800px 600px at -10% 110%, rgba(53,209,255,.08), transparent),
-    var(--bg);
-  line-height:1.6;
-}
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>404 — This site has been closed</title>
 
-.wrap {
-  position: relative;
-  z-index: 0;
-  max-width: 960px;
-  margin: 0 auto;
-  padding: 24px;
-  min-height: 100vh;
-}
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=block" rel="stylesheet">
 
-/* Tüm kartlar için ortak stil */
-.card {
-  position: relative; /* Bağımsız hareket etmesi için */
-  border-radius: var(--radius);
-  padding: 20px 24px 20px;
-  background: linear-gradient(160deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
-  backdrop-filter: blur(6px);
-  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.35); /* Tüm kartlara gölge ekleniyor */
-  overflow: visible;
-  will-change: transform, box-shadow, filter, opacity;
-  transform: translateZ(0);
-  
-  /* Animasyon için eklenen stiller */
-  opacity: 0;
-  transform: translateY(20px) translateZ(0);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-}
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      background: #111;
+      font-family: 'Lora', serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
 
-/* Kartlar sayfada belirdiğinde uygulanacak stil */
-.card.reveal{
-  opacity:1;
-  transform: translateY(0) translateZ(0);
-}
+    .phone {
+      width: 100vw;
+      height: 100vh;
+      background: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 0;
+      box-shadow: none;
+    }
 
-/* Header kartı için özel glow efekti */
-header.card {
-  box-shadow: var(--glow),
-              0 12px 24px rgba(0, 0, 0, 0.5),
-              0 20px 60px rgba(0, 0, 0, 0.35);
-}
+    .screen {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 20px; /* 404 ile mesaj arası boşluk */
+      text-align: center;
+      color: #fff;
+      padding: 0 24px;
+      box-sizing: border-box;
+    }
 
+    .code {
+      font-weight: 700;
+      font-size: 150px;
+      margin: 0;
+      line-height: 1;
+    }
 
+    .message {
+      font-size: 60px;
+      margin: 0;
+      white-space: nowrap; /* Tek satırda kalması için */
+    }
 
-header.card::before,
-header.card::after {
-content:"";
-position:absolute;
-width:150px;
-height:150px;
-border-radius:50%;
-filter: blur(25px);
-top:50%;
-left:50%;
-transform-origin: center;
-will-change: transform, filter;
-}
-header.card::before { background: rgba(155,92,255,0.3); animation: orbit-mor 1s linear forwards;}
-header.card::after { background: rgba(53,209,255,0.3); animation: orbit-mavi 1s linear forwards;}
-@keyframes orbit-mor {from { transform: translate(-50%, -50%) rotate(65deg) translate(-200px, 120px) translateZ(0);} to {transform: translate(-50%, -50%) rotate(0deg) translate(-200px, 120px) translateZ(0);}}
-@keyframes orbit-mavi {from { transform: translate(-50%, -50%) rotate(245deg) translate(-200px, 120px) translateZ(0);} to {transform: translate(-50%, -50%) rotate(180deg) translate(-200px, 120px) translateZ(0);}}
-header.card > * { position: relative; z-index:1; }
+    /* Responsive ayarlar */
+    @media (max-width: 1024px) {
+      .code { font-size: 120px; }
+      .message { font-size: 30px; }
+    }
 
-.badge{ display:inline-flex; gap:8px; align-items:center; color:var(--muted); font-size:16px; padding:10px 14px; border-radius:999px; background: rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.08); }
-.title{ font-family:'Pacifico', cursive; font-size:clamp(36px,8vw,64px); line-height:1.5; margin:15px 0 25px; font-weight:500; letter-spacing:.2px; display:inline-block; padding-bottom: 0.30em; padding: 0.25em 0.08em; background: linear-gradient(90deg, var(--primary), var(--primary-2)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
-.subtitle{ margin:0; color:var(--muted); font-size:clamp(14px,2.6vw,18px); }
-.actions{ display:flex; gap:12px; flex-wrap:wrap; margin-top:18px; align-items:center; }
-.btn{ cursor:pointer; padding:14px 20px; border-radius:14px; border:1px solid rgba(255,255,255,.1); background: rgba(255,255,255,.04); color:var(--text); font-weight:600; transition: .2s transform,.2s background,.2s border; font-size:16px; will-change: transform;}
-.btn:hover{ transform:translateY(-1px) translateZ(0); background: rgba(255,255,255,.07); }
-.btn.primary{ background: linear-gradient(135deg, var(--primary), var(--primary-2)); border:none; box-shadow:0 10px 30px rgba(155,92,255,.3); }
-.btn:focus { outline: none; -webkit-tap-highlight-color: transparent; }
-@keyframes press { 0% { transform: scale(1) translateZ(0); } 50% { transform: scale(0.95) translateZ(0); } 100% { transform: scale(1) translateZ(0); } }
-.btn.press { animation: press 0.2s ease; }
+    @media (max-width: 768px) {
+      .code { font-size: 100px; }
+      .message { font-size: 25px; }
+    }
 
-section.card{ margin-top:20px; } /* Tüm section kartlarına üst boşluk veriyoruz */
-
-.fancy{ font-family:'Pacifico', cursive; background: linear-gradient(90deg, var(--accent), var(--primary)); -webkit-background-clip:text; color:transparent; font-size:28px; font-weight:400; margin-left:4px; }
-.type{min-height:48px; font-size:clamp(16px,2.6vw,20px);}
-#typewriter{ display: block; text-align: left; }
-.caret{ display:inline-block; width:10px; background:currentColor; animation:blink 1s steps(1) infinite; vertical-align: middle; }
-.grid{
-display:grid;
-grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-gap: 20px;
-justify-items: center;
-}
-.polaroid {
-  position: relative;
-  z-index: 2;
-  background: rgba(255, 255, 255, 0.05);
-  color: var(--text);
-  border-radius: 14px;
-  padding: 12px;
-  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.35);
-  opacity: 0;
-  transform: translateY(20px) rotate(var(--rot, -2deg));
-  transition: opacity 0.6s ease, transform 0.6s ease;
-  width: 100%;
-  max-width: 220px;
-  will-change: transform, opacity;
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-}
-.polaroid.reveal {
-  opacity: 1;
-  transform: translateY(0) rotate(var(--rot, -2deg));
-}
-.polaroid:hover{ transform:rotate(0) translateY(-2px) translateZ(0); }
-.polaroid img{ width:100%; aspect-ratio:3/4; object-fit:cover; border-radius:10px; }
-.polaroid .cap{ margin-top:6px; text-align:center; font-weight:600; font-size:13px; color:var(--muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-
-/* Sırayla görünme efektleri */
-.polaroid:nth-child(1).reveal { transition-delay: 0s; }
-.polaroid:nth-child(2).reveal { transition-delay: 0.2s; }
-.polaroid:nth-child(3).reveal { transition-delay: 0s; }
-.polaroid:nth-child(4).reveal { transition-delay: 0.2s; }
-
-.timeline{position:relative; padding-left:22px}
-.timeline:before{ content:""; position:absolute; left:10px; top:4px; bottom:4px; width:2px; background:linear-gradient(var(--primary), transparent); transform: translateZ(0);}
-.t-item {
-  position: relative;
-  z-index: 2;
-  margin: 16px 0;
-  padding: 12px 12px 12px 16px;
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: var(--radius);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.35);
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-  will-change: transform, opacity;
-}
-  .t-item.reveal {
-  opacity: 1;
-  transform: translateY(0);
-}
-  .t-item:before{ content:""; position:absolute; left:-6px; top:18.5px; width:12px; height:12px; border-radius:50%; background:var(--primary); transform: translateZ(0);}
-footer{ margin:28px 0 8px; text-align:center; color:var(--muted); font-size:13px; }
-#confetti {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 0;
-}
-  #musicIcon{ display:none; margin-left:12px; font-size:18px; animation:bounce 1s infinite alternate; }
-@keyframes bounce{ 0%{transform:translateY(0) translateZ(0);} 100%{transform:translateY(-4px) translateZ(0);} }
-@keyframes blink{ 0%,50%,100%{opacity:1;} 25%,75%{opacity:0;} }
-
-#musicIcon {
-display: none;
-margin-left: 7px;
-width: 20px;
-height: 20px;
-animation: bounce 1s infinite alternate;
-}
-
-.badge .emoji {
-width: 18px;
-height: 18px;
-vertical-align: middle;
-margin-right: 2px;
-}
-
-.btn .emoji {
-width: 18px;
-height: 18px;
-vertical-align: middle;
-margin-left: 4px;
-}
-
-h3 .emoji {
-width: 30px;
-height: 30px;
-vertical-align: -3px;
-margin-right: 1px;
-}
-
-.subtitle .emoji {
-width: 18px;
-height: 18px;
-vertical-align: middle;
-margin-left: 0px;
-}
-
-@media (min-width: 768px) {
-  .wrap {
-    max-width: 1200px;
-    padding: 24px 20px;
-  }
-  .desktop-layout {
-    display: grid;
-    gap: 20px;
-    margin-bottom: 20px;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto 1fr auto;
-    grid-template-areas:
-      "header gallery"
-      "message gallery"
-      "timeline notes"
-      "friend-note-card friend-note-card";
-    align-items: start;
-  }
-  #header-card { grid-area: header; }
-  #gallery-card {
-    grid-area: gallery;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    margin-top: 0;
-  }
-  .gallery-card h3 { margin-bottom: 15px; }
-  .gallery-card .grid {
-    flex-grow: 1;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-    align-content: start;
-  }
-  #message-card {
-    grid-area: message;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    height: auto;
-    margin-top: 25px;
-  }
-  #timeline-card, #notes-card { display: flex; flex-direction: column; }
-  #timeline-card { justify-content: space-between; margin-top: -56.7px; }
-  #notes-card { justify-content: space-between; }
-  .timeline-card .timeline,
-  .notes-card .timeline {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-  .timeline-notes-desktop {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-    align-items: stretch;
-  }
-  .t-item {
-    position: relative;
-    margin: 8px 0;
-    padding: 10px 10px 10px 14px;
-    background: rgba(255,255,255,.04);
-    border: 1px solid rgba(255,255,255,.08);
-    border-radius: 14px;
-    opacity: 0;
-    transform: translateY(20px) translateZ(0);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-    will-change: transform, opacity;
-  }
-}
-
-.modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.7);
-  backdrop-filter: blur(8px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.4s ease;
-  z-index: 1000;
-}
-.modal.active {
-  opacity: 1;
-  pointer-events: auto;
-}
-.modal-content {
-  position: relative;
-  transition: transform 0.4s ease, opacity 0.4s ease;
-  transform: scale(0.6) translateZ(0);
-  opacity: 0;
-}
-.modal.active .modal-content {
-  transform: scale(1) translateZ(0);
-  opacity: 1;
-}
-.modal-content .polaroid {
-  cursor: default;
-  transform: none !important;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
-  transition: none;
-}
-.modal-content .polaroid {
-  cursor: default;
-  transform: none !important;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
-  transition: none;
-  max-width: 80vw;
-  width: auto;
-  background: rgba(255,255,255,0.05) !important;
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
-z-index: 1000;
-}
-@media (max-width: 768px) {
-  .modal-content .polaroid {
-    max-width: 90vw;
-  }
-}
-@media (min-width: 768px) {
-  #confetti {
-    display: none;
-  }
-}
-.polaroid > * { position: relative; z-index:1; }
-.t-item > * { position: relative; z-index:1; }
+    @media (max-width: 420px) {
+      .code { font-size: 84px; }
+      .message { font-size: 18px; }
+    }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <canvas id="confetti"></canvas>
-    <div class="desktop-layout">
-      <header class="card" id="header-card">
-        <span class="badge">
-          <img class="emoji" src="https://iili.io/K2c9oAX.png" alt="Takvim" />
-          5 Eylül 2025
-        </span>
-        <h1 class="title">İyi ki doğdun, Elif!</h1>
-        <p class="subtitle">
-          Bu sayfayı senin için hazırladım. Küçük ama kalpten bir armağan
-          <img class="emoji" src="https://iili.io/K2cmxIa.png" alt="Parıltı" />
-        </p>
-        <div class="actions">
-          <button class="btn primary" id="revealMsg">
-            Mesajı Göster
-            <img class="emoji" src="https://iili.io/K2c52xs.png" alt="Mektup" />
-          </button>
-          <img id="musicIcon" src="https://iili.io/K2la7Fj.png" alt="Müzik" />
-        </div>
-        <audio id="player" preload="auto" loop></audio>
-      </header>
-
-      <section class="card" id="message-card">
-        <h3>
-          <img class="emoji" src="https://iili.io/K2ccrw7.png" alt="Mesaj" />
-          <span class="fancy">Mesaj</span>
-        </h3>
-        <div class="type" id="typewriter" aria-live="polite"></div>
-      </section>
-
-      <section class="card gallery-card" id="gallery-card">
-        <h3>
-          <img class="emoji" src="https://iili.io/K2c8JFR.png" alt="Fotoğraf" />
-          <span class="fancy">Minik bir galeri</span>
-        </h3>
-        <div class="grid" id="gallery">
-          <figure class="polaroid" style="--rot:-3deg">
-            <img src="https://iili.io/Kd46FXS.md.jpg" alt="Fotoğraf 1" />
-            <figcaption class="cap">18.08.2025</figcaption>
-          </figure>
-          <figure class="polaroid" style="--rot:2deg">
-            <img src="https://iili.io/Kd4U6J4.md.jpg" alt="Fotoğraf 2" />
-            <figcaption class="cap">25.08.2025</figcaption>
-          </figure>
-          <figure class="polaroid" style="--rot:-3deg">
-            <img src="https://iili.io/K27bsj4.md.jpg" alt="Fotoğraf 3" />
-            <figcaption class="cap">02.08.2025</figcaption>
-          </figure>
-          <figure class="polaroid" style="--rot:2deg">
-            <img src="https://iili.io/K2YFP0x.md.jpg" alt="Fotoğraf 4" />
-            <figcaption class="cap">22.08.2025</figcaption>
-          </figure>
-        </div>
-      </section>
-
-      <section class="card timeline-card" id="timeline-card">
-        <h3>
-          <img class="emoji" src="https://iili.io/K2c64b2.png" alt="Fotoğraf" />
-          <span class="fancy">Küçük zaman çizelgesi</span>
-        </h3>
-        <div class="timeline" id="timeline">
-          <div class="t-item"><strong>Tanıştığımız gün</strong> — Biraz garip bir tanışma olmuştu ama iyiki tanışmışız.</div>
-          <div class="t-item"><strong>İlk uzun sohbet</strong> — Seninle sohbet etmeyi gerçekten seviyorum. Samimi davranman gerçekten çok hoş. Sıkılmadan sohbet ettiğim sayılı kişilerdensin.</div>
-          <div class="t-item"><strong>Bugün</strong> — Bu minik sayfayı senin için hazırladım. (Umarım beğenirsin)</div>
-        </div>
-      </section>
-
-      <section class="card notes-card" id="notes-card">
-        <h3>
-          <img class="emoji" src="https://iili.io/K2csrOv.png" alt="Fotoğraf" />
-          <span class="fancy">Küçük notlar</span>
-        </h3>
-        <div class="timeline" id="timelineNotes">
-          <div class="t-item">Samimi tavrını asla kaybetme çünkü bu yönün harika.</div>
-          <div class="t-item">İyi kalpli olduğuna inanıyorum ve bu yüzden sana değer veriyorum.</div>
-          <div class="t-item">İyi ki varsın...</div>
-        </div>
-      </section>
-
-      <section class="card notes-card" id="friend-note-card">
-        <h3>
-          <img class="emoji" src="https://iili.io/KK4ECiJ.png" alt="Fotoğraf" />
-          <span class="fancy">Yakın arkadaşın Nisa'dan</span>
-        </h3>
-        <div class="timeline" id="timelineFriendNote">
-          <div class="t-item">Her zaman kalbin gibi güzel ve temiz bir kız olarak yaşa Eliff :)</div>
-        </div>
-      </section>
-    </div>
-
-    <footer>
-      <p>© 2025 Azad • Sadece minik bir hediye...</p>
-      <p>(Fotoğrafları storylerden ss aldım. Rahatsız olduysan özür dilerim.)</p>
-    </footer>
-  </div>
-
-  <div id="modal" class="modal">
-    <div class="modal-content">
+  <div class="phone">
+    <div class="screen">
+      <h1 class="code">404</h1>
+      <p class="message">This site was closed by the creator</p>
     </div>
   </div>
-
-</body>
-  </html>
-<script>
-const $ = sel => document.querySelector(sel);
-
-// Typewriter
-const lines = [
-  "Sevgili Elif,",
-  "Bugün senin günün. Umarım bu küçük sayfa seni mutlu eder.",
-  "İyi ki doğdun. İyi ki yollarımız kesişti.",
-  "Dilerim önündeki bu yılı mutlu ve huzurlu bir şekilde geçirirsin.",
-  "~Azad"
-];
-let i = 0,
-  j = 0;
-const speed = 30,
-  hold = 900;
-const el = $('#typewriter');
-const heart = document.createElement('img');
-heart.src = "https://iili.io/K2luW6Q.png";
-heart.style.width = '28px';
-heart.style.height = '28px';
-heart.style.marginRight = '4px';
-heart.style.verticalAlign = 'middle';
-heart.style.opacity = 0;
-heart.style.transition = 'opacity 0.3s ease';
-const caret = document.createElement('span');
-caret.className = 'caret';
-caret.innerHTML = '\u00A0';
-el.appendChild(caret);
-
-function type() {
-  if (i < lines.length) {
-    if (j <= lines[i].length) {
-      el.innerHTML = lines[i].slice(0, j);
-      el.appendChild(caret);
-      if (navigator.vibrate) navigator.vibrate(3);
-      if (i === lines.length - 1 && j === lines[i].length) {
-        heart.style.opacity = 1;
-        el.appendChild(heart);
-        el.appendChild(caret);
-      }
-      j++;
-      setTimeout(type, speed);
-    } else {
-      setTimeout(() => {
-        i++;
-        j = 0;
-        type();
-      }, hold);
-    }
-  }
-}
-
-// Müzik kontrolü ve geçiş efektleri
-const player = $('#player');
-player.src = "https://raw.githubusercontent.com/kazikate/Music1/cd08618eb883f54b45c3d00f4006d0d8d2f4ba21/The%20Girl%20Who%20Fell%20from%20the%20Sky%28MP3_320K%29.mp3";
-
-// Müziği yumuşak bir şekilde başlatma fonksiyonu
-function fadeInMusic(targetVolume, duration = 3000) {
-  player.play();
-  player.volume = 0;
-  const interval = 50;
-  const increment = targetVolume / (duration / interval);
-  let currentVolume = 0;
-  const fade = setInterval(() => {
-    currentVolume += increment;
-    if (currentVolume >= targetVolume) {
-      player.volume = targetVolume;
-      clearInterval(fade);
-    } else {
-      player.volume = currentVolume;
-    }
-  }, interval);
-}
-
-// Müziği yumuşak bir şekilde durdurma fonksiyonu
-function fadeOutMusic(duration = 1000) {
-  const startVolume = player.volume;
-  const interval = 50;
-  const decrement = startVolume / (duration / interval);
-  const fade = setInterval(() => {
-    if (player.volume > 0) {
-      player.volume -= decrement;
-    } else {
-      player.pause();
-      player.currentTime = 0;
-      clearInterval(fade);
-    }
-  }, interval);
-}
-
-// "Mesajı Göster" butonuna tıklama olayı
-$('#revealMsg').addEventListener('click', () => {
-  el.innerHTML = '';
-  i = 0;
-  j = 0;
-  el.appendChild(caret);
-  type();
-  $('#musicIcon').style.display = 'inline-block';
-  const btn = $('#revealMsg');
-  btn.classList.remove('press');
-  void btn.offsetWidth;
-  btn.classList.add('press');
-  fadeInMusic(1);
-});
-
-// PNG konfeti
-const canvas = document.getElementById('confetti');
-const ctx = canvas.getContext('2d');
-let W, H;
-
-function resizeCanvas() {
-  const wrap = document.querySelector(".wrap");
-  W = canvas.width = wrap.offsetWidth;
-  H = canvas.height = wrap.offsetHeight;
-}
-resizeCanvas();
-window.addEventListener('resize', resizeCanvas);
-let confs = [];
-const img = new Image();
-img.src = "https://iili.io/K2luW6Q.png";
-
-function spawn(n = 100) {
-  for (let i = 0; i < n; i++) {
-    confs.push({
-      x: Math.random() * W,
-      y: -20 - Math.random() * H,
-      size: 20 + Math.random() * 20,
-      vy: 2 + Math.random() * 3,
-      vx: Math.random() * 2 - 1,
-      rot: Math.random() * Math.PI * 2,
-      dRot: (Math.random() * 0.04) + 0.01
-    });
-  }
-}
-
-function draw() {
-  ctx.clearRect(0, 0, W, H);
-  confs.forEach(p => {
-    p.y += p.vy;
-    p.x += p.vx;
-    p.rot += p.dRot;
-    ctx.save();
-    ctx.translate(p.x, p.y);
-    ctx.rotate(p.rot);
-    ctx.globalAlpha = 1;
-    ctx.drawImage(img, -p.size / 2, -p.size / 2, p.size, p.size);
-    ctx.restore();
-  });
-  confs = confs.filter(p => p.y < H + 50);
-  if (confs.length > 0) requestAnimationFrame(draw);
-}
-spawn(100);
-draw();
-
-// Scroll efektleri
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('reveal');
-    } else {
-      entry.target.classList.remove('reveal');
-    }
-  });
-}, {
-  threshold: 0.1
-});
-document.querySelectorAll('.card, .polaroid, .t-item').forEach(el => observer.observe(el));
-document.addEventListener('DOMContentLoaded', () => {
-    const headerCard = document.getElementById('header-card');
-    headerCard.classList.add('reveal');
-});
-
-// FOTOĞRAF BÜYÜTME EFEKTİ
-const galleryGrid = $('#gallery');
-const modal = $('#modal');
-const modalContent = $('.modal-content');
-
-galleryGrid.addEventListener('click', (e) => {
-  const polaroid = e.target.closest('.polaroid');
-  if (polaroid) {
-    const clonedPolaroid = polaroid.cloneNode(true);
-    clonedPolaroid.style.transition = 'none';
-    clonedPolaroid.style.transform = 'none';
-    clonedPolaroid.style.removeProperty('--rot');
-    modalContent.innerHTML = '';
-    modalContent.appendChild(clonedPolaroid);
-    modal.classList.add('active');
-    history.pushState({
-      modal: 'open'
-    }, 'Büyütülmüş Fotoğraf');
-  }
-});
-modal.addEventListener('click', (e) => {
-  if (e.target.id === 'modal' || e.target.closest('.modal-content')) {
-    modal.classList.remove('active');
-  }
-});
-window.addEventListener('popstate', (e) => {
-  if (modal.classList.contains('active')) {
-    modal.classList.remove('active');
-  }
-});
-</script>
 </body>
 </html>
