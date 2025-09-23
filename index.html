@@ -3,9 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>404 — This site was closed by the creator</title>
-
-  <link rel="manifest" href="/manifest.json" />
+  <title>404 — This site has been closed</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=block" rel="stylesheet">
 
@@ -37,7 +35,7 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      gap: 20px;
+      gap: 20px; /* 404 ile mesaj arası boşluk */
       text-align: center;
       color: #fff;
       padding: 0 24px;
@@ -54,7 +52,7 @@
     .message {
       font-size: 60px;
       margin: 0;
-      white-space: nowrap;
+      white-space: nowrap; /* Tek satırda kalması için */
     }
 
     /* Responsive ayarlar */
@@ -64,7 +62,7 @@
     }
 
     @media (max-width: 768px) {
-      .code { font-size: 100px; }
+      .code { font-size: 96px; }
       .message { font-size: 25px; }
     }
 
@@ -81,19 +79,5 @@
       <p class="message">This site was closed by the creator</p>
     </div>
   </div>
-
-  <script>
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/service-worker.js')
-          .then((registration) => {
-            console.log('Service Worker başarıyla kaydedildi:', registration);
-          })
-          .catch((error) => {
-            console.log('Service Worker kaydı başarısız oldu:', error);
-          });
-      });
-    }
-  </script>
 </body>
 </html>
